@@ -1,0 +1,16 @@
+[E 240213 11:44:00 smartConnect:320] API request failed: {'message': 'Failed to get symbol details', 'errorcode': 'AB1018', 'status': False, 'data': None}
+[E 240213 11:47:42 smartConnect:320] API request failed: {'message': 'Failed to get symbol details', 'errorcode': 'AB1018', 'status': False, 'data': None}
+[E 240213 11:48:23 smartConnect:320] API request failed: {'message': 'Failed to get symbol details', 'errorcode': 'AB1018', 'status': False, 'data': None}
+[E 240213 12:07:24 smartConnect:320] API request failed: {'message': 'Failed to get symbol details', 'errorcode': 'AB1018', 'status': False, 'data': None}
+[E 240213 12:08:48 smartConnect:320] API request failed: {'message': 'Failed to get symbol details', 'errorcode': 'AB1018', 'status': False, 'data': None}
+[E 240213 12:12:10 smartConnect:320] API request failed: {'status': False, 'message': 'INVALID PARAMETERS', 'errorcode': 'AB1007', 'data': {'script': 'IDEA-EQ', 'orderid': None, 'uniqueorderid': 'ea182253-c6a7-4952-95b7-73ed71f05659'}}
+[E 240213 12:13:04 smartConnect:320] API request failed: {'status': False, 'message': 'INVALID PARAMETERS', 'errorcode': 'AB1007', 'data': {'script': 'IDEA-EQ', 'orderid': None, 'uniqueorderid': 'f6f108f0-4814-4f62-aba7-c717632b3aa2'}}
+[E 240213 12:14:09 smartConnect:320] API request failed: {'status': False, 'message': 'INVALID PARAMETERS', 'errorcode': 'AB1007', 'data': {'script': 'IDEA-EQ', 'orderid': None, 'uniqueorderid': '234d7bab-da87-4311-9d8a-7ed137766536'}}
+[E 240213 12:15:33 smartConnect:320] API request failed: {'status': False, 'message': 'INVALID PARAMETERS', 'errorcode': 'AB1007', 'data': {'script': 'IDEA-EQ', 'orderid': None, 'uniqueorderid': 'c903b3ef-baa4-4c57-a0df-1ef0d72568ae'}}
+[E 240213 12:18:12 smartConnect:320] API request failed: {'status': False, 'message': 'INVALID PARAMETERS', 'errorcode': 'AB1007', 'data': {'script': 'IDEA-EQ', 'orderid': None, 'uniqueorderid': '0a01ba2e-cb9f-4038-9502-26455eeb54d2'}}
+[E 240213 12:21:00 smartConnect:320] API request failed: {'message': 'Failed to get symbol details', 'errorcode': 'AB1018', 'status': False, 'data': None}
+[E 240213 12:21:29 smartConnect:320] API request failed: {'message': 'Failed to get symbol details', 'errorcode': 'AB1018', 'status': False, 'data': None}
+[E 240213 12:22:57 smartConnect:320] API request failed: {'message': 'Failed to get symbol details', 'errorcode': 'AB1018', 'status': False, 'data': None}
+[E 240213 12:23:37 smartConnect:320] API request failed: {'message': 'Failed to get symbol details', 'errorcode': 'AB1018', 'status': False, 'data': None}
+[E 240213 12:26:23 smartConnect:320] API request failed: {'message': 'Failed to get symbol details', 'errorcode': 'AB1018', 'status': False, 'data': None}
+[E 240213 12:29:28 smartConnect:320] API request failed: {'message': 'Failed to get symbol details', 'errorcode': 'AB1018', 'status': False, 'data': None}
