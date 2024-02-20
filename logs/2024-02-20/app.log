@@ -1,0 +1,56 @@
+[E 240220 13:35:31 operations:98] Error fetching historical data: time data "28MAR2024" doesn't match format "%Y-%m-%d", at position 1. You might want to try:
+        - passing `format` if your strings have a consistent format;
+        - passing `format='ISO8601'` if your strings are all ISO8601 but not necessarily in exactly the same format;
+        - passing `format='mixed'`, and the format will be inferred for each element individually. You might want to use `dayfirst` alongside this.
+    Traceback (most recent call last):
+      File "c:\Users\user\Documents\angleOne_trading\operations.py", line 69, in get_index_info
+        intializeSymbolTokenMap()
+      File "c:\Users\user\Documents\angleOne_trading\operations.py", line 35, in intializeSymbolTokenMap
+        token_df['expiry'] = pd.to_datetime(token_df['expiry'], format='%Y-%m-%d')
+                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+      File "C:\Users\user\AppData\Local\Programs\Python\Python311\Lib\site-packages\pandas\core\tools\datetimes.py", line 1046, in to_datetime
+        cache_array = _maybe_cache(arg, format, cache, convert_listlike)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+      File "C:\Users\user\AppData\Local\Programs\Python\Python311\Lib\site-packages\pandas\core\tools\datetimes.py", line 250, in _maybe_cache
+        cache_dates = convert_listlike(unique_dates, format)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+      File "C:\Users\user\AppData\Local\Programs\Python\Python311\Lib\site-packages\pandas\core\tools\datetimes.py", line 453, in _convert_listlike_datetimes
+        return _array_strptime_with_fallback(arg, name, utc, format, exact, errors)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+      File "C:\Users\user\AppData\Local\Programs\Python\Python311\Lib\site-packages\pandas\core\tools\datetimes.py", line 484, in _array_strptime_with_fallback
+        result, timezones = array_strptime(arg, fmt, exact=exact, errors=errors, utc=utc)
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+      File "pandas\_libs\tslibs\strptime.pyx", line 530, in pandas._libs.tslibs.strptime.array_strptime
+      File "pandas\_libs\tslibs\strptime.pyx", line 351, in pandas._libs.tslibs.strptime.array_strptime
+    ValueError: time data "28MAR2024" doesn't match format "%Y-%m-%d", at position 1. You might want to try:
+        - passing `format` if your strings have a consistent format;
+        - passing `format='ISO8601'` if your strings are all ISO8601 but not necessarily in exactly the same format;
+        - passing `format='mixed'`, and the format will be inferred for each element individually. You might want to use `dayfirst` alongside this.
+[E 240220 13:36:04 operations:98] Error fetching historical data: time data "28MAR2024" doesn't match format "%Y-%m-%d", at position 1. You might want to try:
+        - passing `format` if your strings have a consistent format;
+        - passing `format='ISO8601'` if your strings are all ISO8601 but not necessarily in exactly the same format;
+        - passing `format='mixed'`, and the format will be inferred for each element individually. You might want to use `dayfirst` alongside this.
+    Traceback (most recent call last):
+      File "c:\Users\user\Documents\angleOne_trading\operations.py", line 69, in get_index_info
+        intializeSymbolTokenMap()
+      File "c:\Users\user\Documents\angleOne_trading\operations.py", line 35, in intializeSymbolTokenMap
+        token_df['expiry'] = pd.to_datetime(token_df['expiry'], format='%Y-%m-%d')
+                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+      File "C:\Users\user\AppData\Local\Programs\Python\Python311\Lib\site-packages\pandas\core\tools\datetimes.py", line 1046, in to_datetime
+        cache_array = _maybe_cache(arg, format, cache, convert_listlike)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+      File "C:\Users\user\AppData\Local\Programs\Python\Python311\Lib\site-packages\pandas\core\tools\datetimes.py", line 250, in _maybe_cache
+        cache_dates = convert_listlike(unique_dates, format)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+      File "C:\Users\user\AppData\Local\Programs\Python\Python311\Lib\site-packages\pandas\core\tools\datetimes.py", line 453, in _convert_listlike_datetimes
+        return _array_strptime_with_fallback(arg, name, utc, format, exact, errors)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+      File "C:\Users\user\AppData\Local\Programs\Python\Python311\Lib\site-packages\pandas\core\tools\datetimes.py", line 484, in _array_strptime_with_fallback
+        result, timezones = array_strptime(arg, fmt, exact=exact, errors=errors, utc=utc)
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+      File "pandas\_libs\tslibs\strptime.pyx", line 530, in pandas._libs.tslibs.strptime.array_strptime
+      File "pandas\_libs\tslibs\strptime.pyx", line 351, in pandas._libs.tslibs.strptime.array_strptime
+    ValueError: time data "28MAR2024" doesn't match format "%Y-%m-%d", at position 1. You might want to try:
+        - passing `format` if your strings have a consistent format;
+        - passing `format='ISO8601'` if your strings are all ISO8601 but not necessarily in exactly the same format;
+        - passing `format='mixed'`, and the format will be inferred for each element individually. You might want to use `dayfirst` alongside this.
