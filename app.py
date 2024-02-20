@@ -7,16 +7,21 @@ from operations import get_index_info,get_strike_lowprice,buy_stock,check_and_ca
 # Create a Flask web application
 app = Flask(__name__,template_folder='templates',static_folder='static')
 # Angleone Client Credentials
-app.secret_key = '9601574b-c305-4824-b2ef-016e138e6aef'
+app.secret_key =credentials.secret_key
+#app.secret_key = '9601574b-c305-4824-b2ef-016e138e6aef'
 # Your AngleOne SmartAPI credentials
-api_key = 'IiO0DeTk'
-username = 'REUG1397'
-pwd = '2209'
+# api_key = 'IiO0DeTk'
+# username = 'REUG1397'
+# pwd = '2209'
+api_key = credentials.api_key
+username = credentials.username
+pwd = credentials.pwd
 # Initialize the SmartApi object
 smartapi = SmartConnect(api_key=credentials.api_key)
 #smartapi = SmartConnect(api_key=api_key)
 # Your TOTP token (you need to replace this with your actual TOTP token)
-token = "3ENHXY6BSSGFFWGFOEY2GPGQPM"
+token = credentials.token
+#token = "3ENHXY6BSSGFFWGFOEY2GPGQPM"
 # Your correlation ID (you can generate this dynamically if needed)
 #correlation_id = "abcde"
 # Generate TOTP
