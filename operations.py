@@ -22,8 +22,8 @@ def wait_until_market_open(target_time):
     while True:
         if current_time >= target_time:
             break
-        sleep_time.sleep(20) 
-        #print("hello world")  
+        sleep_time.sleep(5) 
+        print("waiting for correct time .....")  
         current_time = datetime.now().time()
 #
 def intializeSymbolTokenMap():
@@ -58,6 +58,7 @@ def get_index_info(indextime,indexname,smartApi):
             raise ValueError("We don't support other than 10AM & 1PM (13) time")
         #calling the function before the time to submit
         target_time = time(indextime,1)
+        print("wait for 10:01 (or) 13:01 .....")
         wait_until_market_open(target_time)
         if indexname == "NIFTY":
             index = "NIFTY"
@@ -109,6 +110,7 @@ def get_strike_lowprice(indextime,indexname,strike_price,option,smartApi):
             raise ValueError("We don't support other than 10AM & 1PM (13) time")
         #calling the function before the time to submit
         target_time = time(indextime,4)
+        print("wait for 10:04 (or) 13:04 .....")
         wait_until_market_open(target_time)
         today_expiry_date_str = get_today_date_tdngsymbl()
         today_expiry_date = datetime.strptime(today_expiry_date_str, "%a, %d %b %Y %H:%M:%S GMT")
@@ -171,6 +173,7 @@ def buy_stock(indextime,indexname,items_to_buy,smartApi):
             raise ValueError("We don't support other than 10AM & 1PM (13) time")
         #calling the function before the time to submit
         target_time = time(indextime,5)
+        print("wait for 10:05 (or) 13:05 .....")
         wait_until_market_open(target_time)
         triggered_data=[]   
         for item in items_to_buy:
@@ -213,7 +216,7 @@ def buy_stock(indextime,indexname,items_to_buy,smartApi):
 # STEP - 4 (SUB)
 # If one stock ce or pe buy than other ce or pe get cancelled ( Below 4 functions for that:) 
 # Function to check order status 
-@retry(wait_fixed=2000) 
+@retry(wait_fixed=2000,stop_max_attempt_number=None) 
 def check_order_status(unique_order_id,smartApi):
     #statuss = None
     try:
@@ -280,7 +283,7 @@ def check_and_cancel_order(unique_order_ids,smartApi):
             return json.dumps({"Error in check_and_cancel_order":str(e)}),500
 # STEP - 5 (SUB)    
 # Sell the stock using details fetch live data (LTPDATA) and sell for up if graph goes up or sell for down if graph goes down  ( 3 functions used )
-@retry(wait_fixed=1000)
+@retry(wait_fixed=1000,stop_max_attempt_number=None)
 def get_live_stock_price(tradingsymbol,symboltoken,smartApi):
     #return [tradingsymbol,symboltoken]
     try:
@@ -323,6 +326,7 @@ def orderlist_check_placesell(average_price,tradingsymbol,symboltoken,quantity,d
         sell_triggered = False
         sell_decreased_to = 10
         sell_decreased_value = sell_for_up - sell_decreased_to
+        sell_decreased_value_boolean = False
         while True:
             live_price = get_live_stock_price(tradingsymbol,symboltoken,smartApi)
             if isinstance(live_price, tuple):
@@ -333,9 +337,10 @@ def orderlist_check_placesell(average_price,tradingsymbol,symboltoken,quantity,d
                 live_price = float(live_price)
             #return live_price
             #sell_for_up is 130 if live price is 122 then sell_for_down should changes to 0.0
-            if live_price >= sell_decreased_value:
+            if live_price >= sell_decreased_value and not sell_decreased_value_boolean:
                 dynamic_xfor_sub_down_sell = 0.0
                 sell_for_down = average_price - float(dynamic_xfor_sub_down_sell)
+                sell_decreased_value_boolean = True
                 print("sell for down is 0.0")
             # Check if the graph goes up ( or ) goes down and trigger sell
             if live_price >= sell_for_up or live_price <= sell_for_down:
