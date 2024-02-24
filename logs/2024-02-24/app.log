@@ -1,0 +1,12 @@
+[E 240224 23:36:31 operations:193] Error fetching historical data: 'NoneType' object is not iterable
+    Traceback (most recent call last):
+      File "c:\Users\user\Documents\angleOne_trading\operations.py", line 187, in get_strike_lowprice
+        low_prices = [item[3] for item in index_historical_data['data']]
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    TypeError: 'NoneType' object is not iterable
+[E 240224 23:36:38 operations:193] Error fetching historical data: 'NoneType' object is not iterable
+    Traceback (most recent call last):
+      File "c:\Users\user\Documents\angleOne_trading\operations.py", line 187, in get_strike_lowprice
+        low_prices = [item[3] for item in index_historical_data['data']]
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    TypeError: 'NoneType' object is not iterable

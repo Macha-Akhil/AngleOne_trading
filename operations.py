@@ -116,10 +116,10 @@ def get_strike_lowprice(indextime,indexname,strike_price,option,smartApi):
         today_expiry_date = datetime.strptime(today_expiry_date_str, "%a, %d %b %Y %H:%M:%S GMT")
         weekday = today_expiry_date.weekday()
         if indexname == "NIFTY":
-            nifty_weekday_add = 3
+            nifty_weekday_add = 3 # thursday
             days_to_add = (nifty_weekday_add - weekday) % 7
         elif indexname == "BANKNIFTY":
-            banknifty_weekday_add = 2
+            banknifty_weekday_add = 2 # wednesday
             days_to_add = (banknifty_weekday_add - weekday) % 7
         # Calculate the nearest weekday date ### "22FEB2024"
         nearest_weekday = today_expiry_date + timedelta(days=days_to_add)
@@ -130,20 +130,35 @@ def get_strike_lowprice(indextime,indexname,strike_price,option,smartApi):
         intializeSymbolTokenMap()
         token_info = getTokenInfo('NFO','OPTIDX',indexname,strike_price,option,nearest_weekday_str)
         #return str(token_info)
-        # If it is empty , check before date from present date
+        # If it is empty , check one day from present date
+        # below if condition checks tuesday , wednesday , thursday and friday
         if token_info.empty:
-            days_to_subtract_num = 1 if indexname == "BANKNIFTY" else 2
-            days_to_add = (days_to_subtract_num - weekday) % 7
-            nearest_weekday = today_expiry_date - timedelta(days=days_to_add)
+            days_to_add_num = 3 if indexname == "BANKNIFTY" else 4  # 3 thursday (banknifty) -- # 4 friday (nifty)
+            days_to_add = (days_to_add_num - weekday) % 7
+            nearest_weekday = today_expiry_date + timedelta(days=days_to_add)
             nearest_weekday_str = nearest_weekday.strftime("%Y-%m-%d")
-            token_info = getTokenInfo('NFO', 'OPTIDX', indexname, strike_price, option, nearest_weekday_str)           
-            # If still empty, check one day later from present date
-            if token_info.empty:
-                days_to_add_num = 3 if indexname == "BANKNIFTY" else 4
+            token_info = getTokenInfo('NFO', 'OPTIDX', indexname, strike_price, option, nearest_weekday_str)
+            # If still empty, check  before date later from present date
+            if token_info.empty: 
+                days_to_add_num = 1 if indexname == "BANKNIFTY" else 2 # 1 Tuesday (Banknifty) -- # 2 wednesday (nifty)
                 days_to_add = (days_to_add_num - weekday) % 7
-                nearest_weekday = today_expiry_date + timedelta(days=days_to_add)
+                nearest_weekday = today_expiry_date - timedelta(days=days_to_add)
                 nearest_weekday_str = nearest_weekday.strftime("%Y-%m-%d")
-                token_info = getTokenInfo('NFO', 'OPTIDX', indexname, strike_price, option, nearest_weekday_str)
+                token_info = getTokenInfo('NFO', 'OPTIDX', indexname, strike_price, option, nearest_weekday_str)   
+                # if still empty , banknifty is wednesday and it check on friday         
+                if indexname == "BANKNIFTY" and token_info.empty:
+                    days_to_add_num = 4 # 4 Friday (banknifty)
+                    days_to_add = (days_to_add_num - weekday) % 7
+                    nearest_weekday = today_expiry_date + timedelta(days=days_to_add)
+                    nearest_weekday_str = nearest_weekday.strftime("%Y-%m-%d")
+                    token_info = getTokenInfo('NFO', 'OPTIDX', indexname, strike_price, option, nearest_weekday_str)
+                # if still empty , nifty is thursday and it check on wednesday befor days 
+                if indexname == "NIFTY" and token_info.empty:
+                    days_to_add_num = 1 # 1 tuesday (nifty)
+                    days_to_add = (days_to_add_num - weekday) % 7
+                    nearest_weekday = today_expiry_date + timedelta(days=days_to_add)
+                    nearest_weekday_str = nearest_weekday.strftime("%Y-%m-%d")
+                    token_info = getTokenInfo('NFO', 'OPTIDX', indexname, strike_price, option, nearest_weekday_str)
         #return str(token_info)
         token_info_ = token_info['token'].tolist()
         symbol_info_ = token_info['symbol'].tolist()
