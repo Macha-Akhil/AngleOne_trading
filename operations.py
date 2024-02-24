@@ -7,7 +7,15 @@ import requests
 import pandas as pd
 import credentials
 from retrying import retry
+import calendar
 #smartApi = SmartConnect(api_key=credentials.api_key)#
+# def get_last_thursday_of_month(year, month):
+#     last_day_of_month = calendar.monthrange(year, month)[1]
+#     last_date = datetime(year, month, last_day_of_month)
+#     last_weekday = last_date.weekday()  # 0 = Monday, 1 = Tuesday, ..., 6 = Sunday
+#     days_to_thursday = (last_weekday - 3) % 7  # Calculate how many days to subtract to get to Thursday
+#     last_thursday = last_date - timedelta(days=days_to_thursday)
+#     return last_thursday
 def get_today_date_tdngsymbl():
         today_date = datetime.now().date()
         formatted_expiry = today_date.strftime("%a, %d %b %Y %H:%M:%S GMT")
@@ -112,6 +120,11 @@ def get_strike_lowprice(indextime,indexname,strike_price,option,smartApi):
         target_time = time(indextime,4)
         print("wait for 10:04 (or) 13:04 .....")
         wait_until_market_open(target_time)
+        # Get the current year and month
+        # current_year = datetime.now().year
+        # current_month = datetime.now().month
+        #last_thursday = last_thursday_of_month(current_year, current_month) #datetime type "Thu, 29 Feb 2024 00:00:00 GMT"
+        #return last_thursday
         today_expiry_date_str = get_today_date_tdngsymbl()
         today_expiry_date = datetime.strptime(today_expiry_date_str, "%a, %d %b %Y %H:%M:%S GMT")
         weekday = today_expiry_date.weekday()
@@ -124,7 +137,7 @@ def get_strike_lowprice(indextime,indexname,strike_price,option,smartApi):
         # Format the nearest weekday date as a string
         #nearest_weekday_str = nearest_weekday.strftime("%a, %d %b %Y %H:%M:%S")
         nearest_weekday_str = nearest_weekday.strftime("%Y-%m-%d")
-        #indexname = 'NIFTY'
+        #return(nearest_weekday_str)
         intializeSymbolTokenMap()
         token_info = getTokenInfo('NFO','OPTIDX',indexname,strike_price,option,nearest_weekday_str)
         #return str(token_info)
@@ -229,7 +242,9 @@ def check_order_status(unique_order_id,smartApi):
             statuss.append(order_details)      
         return statuss
     except Exception as e:
-        return json.dumps({"Error in check_order_status":str(e)}),500 
+        print(f"Error in check_order_status : {e}")
+        raise  # Re-raise the exception to trigger retry
+        #return json.dumps({"Error in check_order_status":str(e)}),500 
 # STEP - 4 (SUB)
 # Function to cancel another order (SELL) for a specific order ID
 #@retry(wait_fixed=2000) 
@@ -280,7 +295,11 @@ def check_and_cancel_order(unique_order_ids,smartApi):
             print("checking orders....")
         return order_status_complete_data
     except Exception as e:
-            return json.dumps({"Error in check_and_cancel_order":str(e)}),500
+        print(f"Error occurred: {e}")
+        time.sleep(5)  # Wait for a few seconds before retrying
+        check_and_cancel_order(unique_order_ids,smartApi)  # Retry the main function
+    # except Exception as e:
+    #         return json.dumps({"Error in check_and_cancel_order":str(e)}),500
 # STEP - 5 (SUB)    
 # Sell the stock using details fetch live data (LTPDATA) and sell for up if graph goes up or sell for down if graph goes down  ( 3 functions used )
 @retry(wait_fixed=1000,stop_max_attempt_number=None)
@@ -293,7 +312,8 @@ def get_live_stock_price(tradingsymbol,symboltoken,smartApi):
         ltp = float(ltp)
         return ltp
     except Exception as e:
-        return json.dumps({"Error in get_live_stock_price":str(e)}),500
+        print(f"Error in get_live_stock_price : {e}")
+        #return json.dumps({"Error in get_live_stock_price":str(e)}),500
 # STEP - 5 (SUB)
 # Sell the order    
 def place_sell_order(tradingsymbol,symboltoken,quantity,smartApi):
@@ -329,23 +349,22 @@ def orderlist_check_placesell(average_price,tradingsymbol,symboltoken,quantity,d
         sell_decreased_value_boolean = False
         while True:
             live_price = get_live_stock_price(tradingsymbol,symboltoken,smartApi)
-            if isinstance(live_price, tuple):
-                #print("converting tuple to float")
-                live_price = float(live_price[0])
-            else:
-                #print("converting tuple to float")
-                live_price = float(live_price)
-            #return live_price
-            #sell_for_up is 130 if live price is 122 then sell_for_down should changes to 0.0
-            if live_price >= sell_decreased_value and not sell_decreased_value_boolean:
-                dynamic_xfor_sub_down_sell = 0.0
-                sell_for_down = average_price - float(dynamic_xfor_sub_down_sell)
-                sell_decreased_value_boolean = True
-                print("sell for down is 0.0")
-            # Check if the graph goes up ( or ) goes down and trigger sell
-            if live_price >= sell_for_up or live_price <= sell_for_down:
-                sell_order_id = place_sell_order(tradingsymbol,symboltoken,quantity,smartApi)
-                break
+            if live_price is not None:
+                if isinstance(live_price, tuple):
+                    live_price = float(live_price[0])
+                else:
+                    live_price = float(live_price)
+                #return live_price
+                #sell_for_up is 130 if live price is 122 then sell_for_down should changes to 0.0
+                if live_price >= sell_decreased_value and not sell_decreased_value_boolean:
+                    dynamic_xfor_sub_down_sell = 0.0
+                    sell_for_down = average_price - float(dynamic_xfor_sub_down_sell)
+                    sell_decreased_value_boolean = True
+                    print("sell for down is 0.0")
+                # Check if the graph goes up ( or ) goes down and trigger sell
+                if live_price >= sell_for_up or live_price <= sell_for_down:
+                    sell_order_id = place_sell_order(tradingsymbol,symboltoken,quantity,smartApi)
+                    break
             current_time = datetime.now().time()
             # Check if it's time to sell
             if current_time >= sell_time and not sell_triggered:
@@ -353,7 +372,7 @@ def orderlist_check_placesell(average_price,tradingsymbol,symboltoken,quantity,d
                 sell_triggered = True
                 return("buy orders are not sell so At 3:15pm orders are cancelled,due to market timing")
             sleep_time.sleep(1)
-            print("checking for sell ......")
+            print(f"checking for sell......")
         return sell_order_id
     except Exception as e:
         return json.dumps({"Error in orderlist_check_placesell":str(e)}),500 

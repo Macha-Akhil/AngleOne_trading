@@ -1,0 +1,115 @@
+[E 240222 12:02:58 operations:162] Error fetching historical data: list index out of range
+    Traceback (most recent call last):
+      File "c:\Users\user\Documents\angleOne_trading\operations.py", line 148, in get_strike_lowprice
+        "symboltoken": result_list[0][0],
+                       ~~~~~~~~~~~^^^
+    IndexError: list index out of range
+[E 240222 12:03:07 operations:162] Error fetching historical data: list index out of range
+    Traceback (most recent call last):
+      File "c:\Users\user\Documents\angleOne_trading\operations.py", line 148, in get_strike_lowprice
+        "symboltoken": result_list[0][0],
+                       ~~~~~~~~~~~^^^
+    IndexError: list index out of range
+[E 240222 12:03:49 operations:162] Error fetching historical data: list index out of range
+    Traceback (most recent call last):
+      File "c:\Users\user\Documents\angleOne_trading\operations.py", line 148, in get_strike_lowprice
+        "symboltoken": result_list[0][0],
+                       ~~~~~~~~~~~^^^
+    IndexError: list index out of range
+[E 240222 12:03:55 operations:162] Error fetching historical data: list index out of range
+    Traceback (most recent call last):
+      File "c:\Users\user\Documents\angleOne_trading\operations.py", line 148, in get_strike_lowprice
+        "symboltoken": result_list[0][0],
+                       ~~~~~~~~~~~^^^
+    IndexError: list index out of range
+[E 240222 12:05:44 operations:162] Error fetching historical data: list index out of range
+    Traceback (most recent call last):
+      File "c:\Users\user\Documents\angleOne_trading\operations.py", line 148, in get_strike_lowprice
+        "symboltoken": result_list[0][0],
+                       ~~~~~~~~~~~^^^
+    IndexError: list index out of range
+[E 240222 12:05:49 operations:162] Error fetching historical data: list index out of range
+    Traceback (most recent call last):
+      File "c:\Users\user\Documents\angleOne_trading\operations.py", line 148, in get_strike_lowprice
+        "symboltoken": result_list[0][0],
+                       ~~~~~~~~~~~^^^
+    IndexError: list index out of range
+[E 240222 21:19:47 operations:185] Error fetching historical data: strptime() argument 1 must be str, not datetime.datetime
+    Traceback (most recent call last):
+      File "c:\Users\user\Documents\angleOne_trading\operations.py", line 131, in get_strike_lowprice
+        last_thursday_date = datetime.strptime(last_thursday, "%a, %d %b %Y %H:%M:%S GMT")
+                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    TypeError: strptime() argument 1 must be str, not datetime.datetime
+[E 240222 21:19:47 operations:185] Error fetching historical data: strptime() argument 1 must be str, not datetime.datetime
+    Traceback (most recent call last):
+      File "c:\Users\user\Documents\angleOne_trading\operations.py", line 131, in get_strike_lowprice
+        last_thursday_date = datetime.strptime(last_thursday, "%a, %d %b %Y %H:%M:%S GMT")
+                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    TypeError: strptime() argument 1 must be str, not datetime.datetime
+[E 240222 21:20:14 operations:185] Error fetching historical data: strptime() argument 1 must be str, not datetime.datetime
+    Traceback (most recent call last):
+      File "c:\Users\user\Documents\angleOne_trading\operations.py", line 131, in get_strike_lowprice
+        last_thursday_date = datetime.strptime(last_thursday, "%a, %d %b %Y %H:%M:%S GMT")
+                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    TypeError: strptime() argument 1 must be str, not datetime.datetime
+[E 240222 21:20:14 operations:185] Error fetching historical data: strptime() argument 1 must be str, not datetime.datetime
+    Traceback (most recent call last):
+      File "c:\Users\user\Documents\angleOne_trading\operations.py", line 131, in get_strike_lowprice
+        last_thursday_date = datetime.strptime(last_thursday, "%a, %d %b %Y %H:%M:%S GMT")
+                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    TypeError: strptime() argument 1 must be str, not datetime.datetime
+[E 240222 21:20:48 operations:185] Error fetching historical data: strptime() argument 1 must be str, not datetime.datetime
+    Traceback (most recent call last):
+      File "c:\Users\user\Documents\angleOne_trading\operations.py", line 131, in get_strike_lowprice
+        last_thursday_date = datetime.strptime(last_thursday, "%a, %d %b %Y %H:%M:%S GMT")
+                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    TypeError: strptime() argument 1 must be str, not datetime.datetime
+[E 240222 21:20:48 operations:185] Error fetching historical data: strptime() argument 1 must be str, not datetime.datetime
+    Traceback (most recent call last):
+      File "c:\Users\user\Documents\angleOne_trading\operations.py", line 131, in get_strike_lowprice
+        last_thursday_date = datetime.strptime(last_thursday, "%a, %d %b %Y %H:%M:%S GMT")
+                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    TypeError: strptime() argument 1 must be str, not datetime.datetime
+[E 240222 21:21:41 operations:185] Error fetching historical data: strptime() argument 1 must be str, not datetime.datetime
+    Traceback (most recent call last):
+      File "c:\Users\user\Documents\angleOne_trading\operations.py", line 131, in get_strike_lowprice
+        last_thursday_date = datetime.strptime(last_thursday, "%a, %d %b %Y %H:%M:%S GMT")
+                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    TypeError: strptime() argument 1 must be str, not datetime.datetime
+[E 240222 21:21:41 operations:185] Error fetching historical data: strptime() argument 1 must be str, not datetime.datetime
+    Traceback (most recent call last):
+      File "c:\Users\user\Documents\angleOne_trading\operations.py", line 131, in get_strike_lowprice
+        last_thursday_date = datetime.strptime(last_thursday, "%a, %d %b %Y %H:%M:%S GMT")
+                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    TypeError: strptime() argument 1 must be str, not datetime.datetime
+[E 240222 21:22:41 operations:185] Error fetching historical data: strptime() argument 1 must be str, not datetime.datetime
+    Traceback (most recent call last):
+      File "c:\Users\user\Documents\angleOne_trading\operations.py", line 131, in get_strike_lowprice
+        last_thursday_date = datetime.strptime(last_thursday, "%a, %d %b %Y %H:%M:%S GMT")
+                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    TypeError: strptime() argument 1 must be str, not datetime.datetime
+[E 240222 21:22:41 operations:185] Error fetching historical data: strptime() argument 1 must be str, not datetime.datetime
+    Traceback (most recent call last):
+      File "c:\Users\user\Documents\angleOne_trading\operations.py", line 131, in get_strike_lowprice
+        last_thursday_date = datetime.strptime(last_thursday, "%a, %d %b %Y %H:%M:%S GMT")
+                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    TypeError: strptime() argument 1 must be str, not datetime.datetime
+[E 240222 21:25:06 operations:185] Error fetching historical data: strptime() argument 1 must be str, not datetime.datetime
+    Traceback (most recent call last):
+      File "c:\Users\user\Documents\angleOne_trading\operations.py", line 131, in get_strike_lowprice
+        last_thursday_date = datetime.strptime(last_thursday, "%a, %d %b %Y %H:%M:%S GMT")
+                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    TypeError: strptime() argument 1 must be str, not datetime.datetime
+[E 240222 21:25:06 operations:185] Error fetching historical data: strptime() argument 1 must be str, not datetime.datetime
+    Traceback (most recent call last):
+      File "c:\Users\user\Documents\angleOne_trading\operations.py", line 131, in get_strike_lowprice
+        last_thursday_date = datetime.strptime(last_thursday, "%a, %d %b %Y %H:%M:%S GMT")
+                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    TypeError: strptime() argument 1 must be str, not datetime.datetime
+[E 240222 21:25:58 app:36] {'message': 'Something Went Wrong, Please Try After Sometime', 'errorcode': 'AB1004', 'status': False, 'data': None}
+[E 240222 21:26:05 operations:106] Error fetching historical data: string index out of range
+    Traceback (most recent call last):
+      File "c:\Users\user\Documents\angleOne_trading\operations.py", line 103, in get_index_info
+        index_open = index_historical_data['data'][0][1]
+                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^
+    IndexError: string index out of range
