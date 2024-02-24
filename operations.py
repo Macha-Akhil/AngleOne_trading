@@ -7,15 +7,7 @@ import requests
 import pandas as pd
 import credentials
 from retrying import retry
-import calendar
 #smartApi = SmartConnect(api_key=credentials.api_key)#
-# def get_last_thursday_of_month(year, month):
-#     last_day_of_month = calendar.monthrange(year, month)[1]
-#     last_date = datetime(year, month, last_day_of_month)
-#     last_weekday = last_date.weekday()  # 0 = Monday, 1 = Tuesday, ..., 6 = Sunday
-#     days_to_thursday = (last_weekday - 3) % 7  # Calculate how many days to subtract to get to Thursday
-#     last_thursday = last_date - timedelta(days=days_to_thursday)
-#     return last_thursday
 def get_today_date_tdngsymbl():
         today_date = datetime.now().date()
         formatted_expiry = today_date.strftime("%a, %d %b %Y %H:%M:%S GMT")
@@ -120,18 +112,15 @@ def get_strike_lowprice(indextime,indexname,strike_price,option,smartApi):
         target_time = time(indextime,4)
         print("wait for 10:04 (or) 13:04 .....")
         wait_until_market_open(target_time)
-        # Get the current year and month
-        # current_year = datetime.now().year
-        # current_month = datetime.now().month
-        #last_thursday = last_thursday_of_month(current_year, current_month) #datetime type "Thu, 29 Feb 2024 00:00:00 GMT"
-        #return last_thursday
         today_expiry_date_str = get_today_date_tdngsymbl()
         today_expiry_date = datetime.strptime(today_expiry_date_str, "%a, %d %b %Y %H:%M:%S GMT")
         weekday = today_expiry_date.weekday()
         if indexname == "NIFTY":
-            days_to_add = (3 - weekday) % 7
+            nifty_weekday_add = 3
+            days_to_add = (nifty_weekday_add - weekday) % 7
         elif indexname == "BANKNIFTY":
-            days_to_add = (2 - weekday) % 7
+            banknifty_weekday_add = 2
+            days_to_add = (banknifty_weekday_add - weekday) % 7
         # Calculate the nearest weekday date ### "22FEB2024"
         nearest_weekday = today_expiry_date + timedelta(days=days_to_add)
         # Format the nearest weekday date as a string
@@ -140,6 +129,21 @@ def get_strike_lowprice(indextime,indexname,strike_price,option,smartApi):
         #return(nearest_weekday_str)
         intializeSymbolTokenMap()
         token_info = getTokenInfo('NFO','OPTIDX',indexname,strike_price,option,nearest_weekday_str)
+        #return str(token_info)
+        # If it is empty , check before date from present date
+        if token_info.empty:
+            days_to_subtract_num = 1 if indexname == "BANKNIFTY" else 2
+            days_to_add = (days_to_subtract_num - weekday) % 7
+            nearest_weekday = today_expiry_date - timedelta(days=days_to_add)
+            nearest_weekday_str = nearest_weekday.strftime("%Y-%m-%d")
+            token_info = getTokenInfo('NFO', 'OPTIDX', indexname, strike_price, option, nearest_weekday_str)           
+            # If still empty, check one day later from present date
+            if token_info.empty:
+                days_to_add_num = 3 if indexname == "BANKNIFTY" else 4
+                days_to_add = (days_to_add_num - weekday) % 7
+                nearest_weekday = today_expiry_date + timedelta(days=days_to_add)
+                nearest_weekday_str = nearest_weekday.strftime("%Y-%m-%d")
+                token_info = getTokenInfo('NFO', 'OPTIDX', indexname, strike_price, option, nearest_weekday_str)
         #return str(token_info)
         token_info_ = token_info['token'].tolist()
         symbol_info_ = token_info['symbol'].tolist()
