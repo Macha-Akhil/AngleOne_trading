@@ -1,0 +1,36 @@
+[E 240226 09:24:23 operations:98] Error fetching historical data: 'NoneType' object is not subscriptable
+    Traceback (most recent call last):
+      File "c:\Users\user\Documents\angleOne_trading\operations.py", line 95, in get_index_info
+        index_open = index_historical_data['data'][0][1]
+                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^
+    TypeError: 'NoneType' object is not subscriptable
+[E 240226 09:24:36 operations:98] Error fetching historical data: 'NoneType' object is not subscriptable
+    Traceback (most recent call last):
+      File "c:\Users\user\Documents\angleOne_trading\operations.py", line 95, in get_index_info
+        index_open = index_historical_data['data'][0][1]
+                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^
+    TypeError: 'NoneType' object is not subscriptable
+[E 240226 09:26:16 operations:98] Error fetching historical data: 'NoneType' object is not subscriptable
+    Traceback (most recent call last):
+      File "c:\Users\user\Documents\angleOne_trading\operations.py", line 95, in get_index_info
+        index_open = index_historical_data['data'][0][1]
+                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^
+    TypeError: 'NoneType' object is not subscriptable
+[E 240226 09:29:53 operations:98] Error fetching historical data: 'NoneType' object is not subscriptable
+    Traceback (most recent call last):
+      File "c:\Users\user\Documents\angleOne_trading\operations.py", line 95, in get_index_info
+        index_open = index_historical_data['data'][0][1]
+                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^
+    TypeError: 'NoneType' object is not subscriptable
+[E 240226 09:34:32 operations:194] Error fetching historical data: list index out of range
+    Traceback (most recent call last):
+      File "c:\Users\user\Documents\angleOne_trading\operations.py", line 180, in get_strike_lowprice
+        "symboltoken": result_list[0][0],
+                       ~~~~~~~~~~~^^^
+    IndexError: list index out of range
+[E 240226 09:34:32 operations:194] Error fetching historical data: list index out of range
+    Traceback (most recent call last):
+      File "c:\Users\user\Documents\angleOne_trading\operations.py", line 180, in get_strike_lowprice
+        "symboltoken": result_list[0][0],
+                       ~~~~~~~~~~~^^^
+    IndexError: list index out of range
