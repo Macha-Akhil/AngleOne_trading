@@ -1,0 +1,5 @@
+[E 240228 09:52:18 operations:98] Error fetching historical data: We don't support other than 10AM & 1PM (13) time
+    Traceback (most recent call last):
+      File "c:\Users\user\Documents\angleOne_trading\operations.py", line 58, in get_index_info
+        raise ValueError("We don't support other than 10AM & 1PM (13) time")
+    ValueError: We don't support other than 10AM & 1PM (13) time

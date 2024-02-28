@@ -274,8 +274,13 @@ def cancel_other_order(unique_order_ids,smartApi):
         #return existing_order_status
         if existing_order_status[0]['data']['status'] == "trigger pending" or existing_order_status[0]['data']['status'] == "open":
             smartApi.cancelOrder(order_id=unique_order_ids[0],variety=order_variety) 
+        else:
+            smartApi.cancelOrder(order_id=unique_order_ids[0],variety=order_variety)
+    except (IndexError, KeyError):
+        print("Order is already cancelled or rejected....")
     except Exception as e:
-        return json.dumps({"Error in cancel_other_order":str(e)}),500
+        print(f"Error in cancel_other_order: {e}")
+        #return json.dumps({"Error in cancel_other_order":str(e)}),500
 # STEP - 4 (SUB)  
 #List to store order statuses
 def check_status(unique_order_ids,smartApi):
