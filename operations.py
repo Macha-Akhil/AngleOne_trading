@@ -7,6 +7,7 @@ import requests
 import pandas as pd
 import credentials
 from retrying import retry
+import asyncio
 #smartApi = SmartConnect(api_key=credentials.api_key)#
 def get_today_date_tdngsymbl():
         today_date = datetime.now().date()
@@ -17,14 +18,14 @@ def get_today_date():
         formatted_today_year = today_date.strftime("%Y,%#m,%#d")
         return formatted_today_year
 #function -- before 10am or 1pm(13pm) submitting the request with required data
-def wait_until_market_open(target_time):
+async def wait_until_market_open(target_time):
     current_time = datetime.now().time()
     while True:
         if current_time >= target_time:
             break
-        sleep_time.sleep(5) 
         print("waiting for correct time .....")  
         current_time = datetime.now().time()
+        await asyncio.sleep(60)
 #
 def intializeSymbolTokenMap():
     url = 'https://margincalculator.angelbroking.com/OpenAPI_File/files/OpenAPIScripMaster.json'
