@@ -58,8 +58,8 @@ def main():
             dynamic_xfor_add_up_sell = request.form.get('xfor_add_up_sell')
             dynamic_xfor_sub_down_sell = request.form.get('xfor_sub_down_sell')
         dynamic_time_int = int(dynamic_time)
+        return (dynamic_index)
         get_index = get_index_info(dynamic_time_int,dynamic_index,smartapi)
-        print(get_index)
         return str(get_index)
         if not isinstance(get_index, (int, float)):
         # If it's not a float or int, raise a ValueError
