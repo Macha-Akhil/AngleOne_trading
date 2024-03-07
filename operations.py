@@ -58,9 +58,9 @@ def get_index_info(indextime,indexname,smartApi):
         else:
             raise ValueError("We don't support other than 10AM & 1PM (13) time")
         #calling the function before the time to submit
-        # target_time = time(indextime,1)
-        # print("wait for 10:01 (or) 13:01 .....")
-        # wait_until_market_open(target_time)
+        target_time = time(indextime,1)
+        print("wait for 10:01 (or) 13:01 .....")
+        wait_until_market_open(target_time)
         if indexname == "NIFTY":
             index = "NIFTY"
         elif indexname == "BANKNIFTY":
@@ -73,9 +73,9 @@ def get_index_info(indextime,indexname,smartApi):
         today = get_today_date()
         year, month, day = today.split(",")
         # Create a datetime object representing the time at which you want to get the NIFTY 50 or BANKNIFTY index open price
-        from_date_time = datetime(int(year),int(month),int(6),indextime,0,0)
+        from_date_time = datetime(int(year),int(month),int(day),indextime,0,0)
         #return str(from_date_time)
-        to_date_time = datetime(int(year),int(month),int(6),indextime,0,0)
+        to_date_time = datetime(int(year),int(month),int(day),indextime,0,0)
         from_date_time_str = "{:04d}-{:02d}-{:02d} {:02d}:{:02d}".format(
             from_date_time.year, from_date_time.month, from_date_time.day,
             from_date_time.hour, from_date_time.minute)

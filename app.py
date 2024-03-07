@@ -88,7 +88,7 @@ def main():
         complete_order_dict = check_and_cancel_order(unique_order_ids_result,smartapi)
         #return complete_order_dict
         sell_order_id = orderlist_check_placesell(complete_order_dict[0]['data']['averageprice'],complete_order_dict[0]['data']['tradingsymbol'],complete_order_dict[0]['data']['symboltoken'],complete_order_dict[0]['data']['quantity'],dynamic_xfor_add_up_sell,dynamic_xfor_sub_down_sell,smartapi)
-        #return sell_order_id
+        return sell_order_id
     except Exception as e:
         return json.dumps({"Error in app.py tradestock :":str(e)}),500
 if __name__ == '__main__':
