@@ -58,9 +58,8 @@ def main():
             dynamic_xfor_add_up_sell = request.form.get('xfor_add_up_sell')
             dynamic_xfor_sub_down_sell = request.form.get('xfor_sub_down_sell')
         dynamic_time_int = int(dynamic_time)
-        return (dynamic_index)
         get_index = get_index_info(dynamic_time_int,dynamic_index,smartapi)
-        return str(get_index)
+        #return str(get_index)
         if not isinstance(get_index, (int, float)):
         # If it's not a float or int, raise a ValueError
             raise ValueError("Invalid index value: {}".format(get_index))
@@ -91,6 +90,6 @@ def main():
         sell_order_id = orderlist_check_placesell(complete_order_dict[0]['data']['averageprice'],complete_order_dict[0]['data']['tradingsymbol'],complete_order_dict[0]['data']['symboltoken'],complete_order_dict[0]['data']['quantity'],dynamic_xfor_add_up_sell,dynamic_xfor_sub_down_sell,smartapi)
         #return sell_order_id
     except Exception as e:
-        return json.dumps({"Error in app.py tradestock":str(e)}),500
+        return json.dumps({"Error in app.py tradestock :":str(e)}),500
 if __name__ == '__main__':
      app.run(port=5001,debug=True)
