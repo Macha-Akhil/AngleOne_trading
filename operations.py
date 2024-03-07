@@ -18,15 +18,17 @@ def get_today_date():
         formatted_today_year = today_date.strftime("%Y,%#m,%#d")
         return formatted_today_year
 #function -- before 10am or 1pm(13pm) submitting the request with required data
+@retry(wait_fixed=10000,stop_max_attempt_number=None) 
 def wait_until_market_open(target_time):
-    current_time = datetime.now().time()
+    #current_time = datetime.now().time()
     while True:
+        current_time = datetime.now().time()
         if current_time >= target_time:
             break
         print("waiting for correct time .....")  
-        current_time = datetime.now().time()
-        time.sleep(5)
-        #await asyncio.sleep(60)
+        #current_time = datetime.now().time()
+        time.sleep(10)
+        #await asyncio.sleep(5)
 #
 def intializeSymbolTokenMap():
     url = 'https://margincalculator.angelbroking.com/OpenAPI_File/files/OpenAPIScripMaster.json'
@@ -99,6 +101,7 @@ def get_index_info(indextime,indexname,smartApi):
     except Exception as e:
         logger.exception(f"Error fetching historical data: {e}")
         return jsonify({"status": "error", "message": str(e)})
+#asyncio.run(get_index_info(indextime,indexname,smartApi))
 # STEP - 2
 # Morning 10:01 - 10:04 min of low value of ( NIFTY 50 or BANKNIFTY ) CE AND PE values
 def get_strike_lowprice(indextime,indexname,strike_price,option,smartApi):

@@ -1,2 +1,22 @@
 [E 240307 07:38:32 app:36] {'message': 'Something Went Wrong, Please Try After Sometime', 'errorcode': 'AB1004', 'status': False, 'data': None}
 [E 240307 09:02:18 app:36] {'message': 'Something Went Wrong, Please Try After Sometime', 'errorcode': 'AB1004', 'status': False, 'data': None}
+[E 240307 10:23:25 operations:100] Error fetching historical data: 'NoneType' object is not subscriptable
+    Traceback (most recent call last):
+      File "c:\Users\user\Documents\angleOne_trading\operations.py", line 97, in get_index_info
+        index_open = index_historical_data['data'][0][1]
+                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^
+    TypeError: 'NoneType' object is not subscriptable
+[E 240307 10:25:22 app:36] {'message': 'Something Went Wrong, Please Try After Sometime', 'errorcode': 'AB1004', 'status': False, 'data': None}
+[E 240307 10:25:33 operations:101] Error fetching historical data: string index out of range
+    Traceback (most recent call last):
+      File "c:\Users\user\Documents\angleOne_trading\operations.py", line 98, in get_index_info
+        index_open = index_historical_data['data'][0][1]
+                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^
+    IndexError: string index out of range
+[E 240307 10:26:37 operations:101] Error fetching historical data: 'NoneType' object is not subscriptable
+    Traceback (most recent call last):
+      File "c:\Users\user\Documents\angleOne_trading\operations.py", line 98, in get_index_info
+        index_open = index_historical_data['data'][0][1]
+                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^
+    TypeError: 'NoneType' object is not subscriptable
+[E 240307 10:37:33 app:36] {'message': 'Something Went Wrong, Please Try After Sometime', 'errorcode': 'AB1004', 'status': False, 'data': None}
