@@ -59,7 +59,7 @@ def main():
             dynamic_xfor_sub_down_sell = request.form.get('xfor_sub_down_sell')
         dynamic_time_int = int(dynamic_time)
         get_index = get_index_info(dynamic_time_int,dynamic_index,smartapi)
-        #return str(get_index)
+        return str(get_index)
         if not isinstance(get_index, (int, float)):
         # If it's not a float or int, raise a ValueError
             raise ValueError("Invalid index value: {}".format(get_index))
@@ -80,7 +80,7 @@ def main():
         pe_strike_lp.extend([dynamic_xforbuy,dynamic_xfortriggerprice_buy,dynamic_quantity])
         #return [ce_strike_lp,pe_strike_lp]
         items_to_buy = [ce_strike_lp,pe_strike_lp]
-        return items_to_buy
+        #return items_to_buy
         triggered_buy_data_ids = buy_stock(dynamic_time_int,dynamic_index,items_to_buy,smartapi)
         #return triggered_buy_data_ids
         unique_order_ids_result = [triggered_buy_data_ids[i:i+2] for i in range(0, len(triggered_buy_data_ids), 2)]
