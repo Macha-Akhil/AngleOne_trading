@@ -57,7 +57,7 @@ def main():
             dynamic_quantity = request.form.get('lots_quantity')
             dynamic_xfor_add_up_sell = request.form.get('xfor_add_up_sell')
             dynamic_xfor_sub_down_sell = request.form.get('xfor_sub_down_sell')
-        #return dynamic_index
+        return dynamic_time
         dynamic_time_int = int(dynamic_time)
         get_index = get_index_info(dynamic_time_int,dynamic_index,smartapi)
         return str(get_index)
