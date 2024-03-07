@@ -58,9 +58,9 @@ def get_index_info(indextime,indexname,smartApi):
         else:
             raise ValueError("We don't support other than 10AM & 1PM (13) time")
         #calling the function before the time to submit
-        target_time = time(indextime,1)
-        print("wait for 10:01 (or) 13:01 .....")
-        wait_until_market_open(target_time)
+        # target_time = time(indextime,1)
+        # print("wait for 10:01 (or) 13:01 .....")
+        # wait_until_market_open(target_time)
         if indexname == "NIFTY":
             index = "NIFTY"
         elif indexname == "BANKNIFTY":
