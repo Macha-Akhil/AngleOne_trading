@@ -6,6 +6,7 @@ import credentials
 from operations import get_index_info,get_strike_lowprice,buy_stock,check_and_cancel_order,orderlist_check_placesell
 # Create a Flask web application
 app = Flask(__name__,template_folder='templates',static_folder='static')
+app.config['SERVER_TIMEOUT'] = 600
 # Angleone Client Credentials
 app.secret_key =credentials.secret_key
 #app.secret_key = '9601574b-c305-4824-b2ef-016e138e6aef'
@@ -92,4 +93,4 @@ def main():
     except Exception as e:
         return json.dumps({"Error in app.py tradestock :":str(e)}),500
 if __name__ == '__main__':
-     app.run(port=5001,debug=True)
+     app.run(host='0.0.0.0',port=5001,debug=True)
