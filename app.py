@@ -50,16 +50,19 @@ def index():
 # Main Function
 @app.route('/trading',methods=['GET', 'POST'])
 def main():
-    try :
-        if request.method == 'POST':
-            dynamic_time = request.form.get('xfortime')
-            dynamic_index = request.form.get('index')
-            dynamic_xforindex = request.form.get('xforindex')
-            dynamic_xforbuy = request.form.get('xforbuyprice')
-            dynamic_xfortriggerprice_buy = request.form.get('xfortriggerprice_buy')
-            dynamic_quantity = request.form.get('lots_quantity')
-            dynamic_xfor_add_up_sell = request.form.get('xfor_add_up_sell')
-            dynamic_xfor_sub_down_sell = request.form.get('xfor_sub_down_sell')
+    try:
+        try :
+            if request.method == 'POST':
+                dynamic_time = request.form.get('xfortime')
+                dynamic_index = request.form.get('index')
+                dynamic_xforindex = request.form.get('xforindex')
+                dynamic_xforbuy = request.form.get('xforbuyprice')
+                dynamic_xfortriggerprice_buy = request.form.get('xfortriggerprice_buy')
+                dynamic_quantity = request.form.get('lots_quantity')
+                dynamic_xfor_add_up_sell = request.form.get('xfor_add_up_sell')
+                dynamic_xfor_sub_down_sell = request.form.get('xfor_sub_down_sell')
+        except Exception as e:
+            return json.dumps({"Error in post values :":str(e)}),500
         dynamic_time_int = int(dynamic_time)
         try:
             get_index = get_index_info(dynamic_time_int,dynamic_index,smartapi)
