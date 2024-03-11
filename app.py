@@ -50,6 +50,7 @@ def index():
 # Main Function
 @app.route('/trading',methods=['GET', 'POST'])
 def main():
+    return "hii"
     try:
         try :
             if request.method == 'POST':
