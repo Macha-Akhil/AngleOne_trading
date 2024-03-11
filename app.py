@@ -1,12 +1,14 @@
 from flask import Flask, render_template, request, jsonify, session
 from SmartApi import SmartConnect 
-import pyotp,json
+import pyotp,json,os
 from logzero import logger
 import credentials
+from pytz import timezone
 from operations import get_index_info,get_strike_lowprice,buy_stock,check_and_cancel_order,orderlist_check_placesell
 # Create a Flask web application
 app = Flask(__name__,template_folder='templates',static_folder='static')
 app.config['SERVER_TIMEOUT'] = 600
+os.environ['TZ'] = 'Asia/Kolkata'
 # Angleone Client Credentials
 app.secret_key =credentials.secret_key
 #app.secret_key = '9601574b-c305-4824-b2ef-016e138e6aef'
