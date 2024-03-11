@@ -3,7 +3,7 @@ import json
 from logzero import logger
 from datetime import datetime,time,timedelta
 import time as sleep_time
-import requests
+import requests,os
 import pandas as pd
 import credentials
 from retrying import retry
@@ -13,6 +13,7 @@ import pytz  # Import the pytz module for time zone handling
 #smartApi = SmartConnect(api_key=credentials.api_key)#
 # Define the Kolkata time zone
 kolkata_timezone = pytz.timezone('Asia/Kolkata')
+os.environ['TZ'] = 'Asia/Kolkata'
 
 def get_today_date_tdngsymbl():
         today_date = datetime.now(kolkata_timezone).date()
