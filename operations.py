@@ -14,7 +14,6 @@ import pytz  # Import the pytz module for time zone handling
 # Define the Kolkata time zone
 kolkata_timezone = pytz.timezone('Asia/Kolkata')
 os.environ['TZ'] = 'Asia/Kolkata'
-
 def get_today_date_tdngsymbl():
         today_date = datetime.now(kolkata_timezone).date()
         formatted_expiry = today_date.strftime("%a, %d %b %Y %H:%M:%S GMT")

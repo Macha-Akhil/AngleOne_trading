@@ -1,1 +1,13 @@
 [E 240311 13:25:54 app:37] {'message': 'Something Went Wrong, Please Try After Sometime', 'errorcode': 'AB1004', 'status': False, 'data': None}
+[E 240311 15:13:43 operations:107] Error fetching historical data: 'module' object is not callable
+    Traceback (most recent call last):
+      File "c:\Users\user\Documents\angleOne_trading\operations.py", line 69, in get_index_info
+        target_time = time(indextime,1)
+                      ^^^^^^^^^^^^^^^^^
+    TypeError: 'module' object is not callable
+[E 240311 15:13:49 operations:107] Error fetching historical data: 'module' object is not callable
+    Traceback (most recent call last):
+      File "c:\Users\user\Documents\angleOne_trading\operations.py", line 69, in get_index_info
+        target_time = time(indextime,1)
+                      ^^^^^^^^^^^^^^^^^
+    TypeError: 'module' object is not callable
