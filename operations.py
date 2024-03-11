@@ -18,16 +18,14 @@ def get_today_date():
         formatted_today_year = today_date.strftime("%Y,%#m,%#d")
         return formatted_today_year
 #function -- before 10am or 1pm(13pm) submitting the request with required data
-@retry(wait_fixed=10000,stop_max_attempt_number=None) 
+#@retry(wait_fixed=10000,stop_max_attempt_number=None) 
 def wait_until_market_open(target_time):
-    #current_time = datetime.now().time()
     while True:
         current_time = datetime.now().time()
         if current_time >= target_time:
             break
         print("waiting for correct time .....")  
-        #current_time = datetime.now().time()
-        time.sleep(10)
+        sleep_time.sleep(10)
         #await asyncio.sleep(5)
 #
 def intializeSymbolTokenMap():

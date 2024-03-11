@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "/subscriptions/8afb70aa-f044-4405-826f-601b955764ba/resourceGroups/explorangelone_one/providers/Microsoft.Web/sites/explorangelone",
+    "appService.deploySubpath": "."
+}
