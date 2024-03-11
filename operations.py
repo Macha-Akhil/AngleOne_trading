@@ -8,20 +8,25 @@ import pandas as pd
 import credentials
 from retrying import retry
 import asyncio
+import pytz  # Import the pytz module for time zone handling
+
 #smartApi = SmartConnect(api_key=credentials.api_key)#
+# Define the Kolkata time zone
+kolkata_timezone = pytz.timezone('Asia/Kolkata')
+
 def get_today_date_tdngsymbl():
-        today_date = datetime.now().date()
+        today_date = datetime.now(kolkata_timezone).date()
         formatted_expiry = today_date.strftime("%a, %d %b %Y %H:%M:%S GMT")
         return formatted_expiry
 def get_today_date():
-        today_date = datetime.now().date()
+        today_date = datetime.now(kolkata_timezone).date()
         formatted_today_year = today_date.strftime("%Y,%#m,%#d")
         return formatted_today_year
 #function -- before 10am or 1pm(13pm) submitting the request with required data
 #@retry(wait_fixed=10000,stop_max_attempt_number=None) 
 def wait_until_market_open(target_time):
     while True:
-        current_time = datetime.now().time()
+        current_time = datetime.now(kolkata_timezone).time()
         if current_time >= target_time:
             break
         print("waiting for correct time .....")  
