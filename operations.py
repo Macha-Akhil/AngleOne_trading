@@ -39,13 +39,29 @@ def intializeSymbolTokenMap():
     d = requests.get(url).json()
     global token_df
     token_df = pd.DataFrame.from_dict(d)
-    ##########
+    #####
+    
+    # Replace empty strings in the 'expiry' column with NaN
     token_df['expiry'] = token_df['expiry'].replace('', np.nan)
+    
+    # Log the rows with empty strings in the 'expiry' column
+    empty_expiry_rows = token_df[token_df['expiry'].isnull()]
+    if not empty_expiry_rows.empty:
+        logging.warning("Rows with empty strings in the 'expiry' column:")
+        logging.warning(empty_expiry_rows)
+    
     # Drop rows with NaN values in the 'expiry' column
     token_df = token_df.dropna(subset=['expiry'])
+    
     # Filter out rows with invalid date strings in the 'expiry' column
     token_df = token_df[token_df['expiry'].str.match(r'^\d{2}[A-Za-z]{3}\d{4}$')]
-  
+    
+    # Log the rows with invalid date strings in the 'expiry' column
+    invalid_expiry_rows = token_df[~token_df['expiry'].notnull()]
+    if not invalid_expiry_rows.empty:
+        logging.warning("Rows with invalid date strings in the 'expiry' column:")
+        logging.warning(invalid_expiry_rows)
+    
     #token_df['expiry'] = pd.to_datetime(token_df['expiry'])
     token_df['expiry'] = pd.to_datetime(token_df['expiry'], format='%d%b%Y',errors='coerce')
     token_df = token_df.dropna(subset=['expiry'])  # Drop rows with invalid datetime values
