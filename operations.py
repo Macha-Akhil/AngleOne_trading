@@ -41,7 +41,9 @@ def intializeSymbolTokenMap():
     # Drop rows with empty strings in the 'expiry' column
     token_df = token_df[token_df['expiry'] != '']
     #token_df['expiry'] = pd.to_datetime(token_df['expiry'])
-    token_df['expiry'] = pd.to_datetime(token_df['expiry'], format='%d%b%Y')
+    token_df['expiry'] = pd.to_datetime(token_df['expiry'], format='%d%b%Y',errors='coerce')
+    token_df = token_df.dropna(subset=['expiry'])  # Drop rows with invalid datetime values
+
     token_df = token_df.astype({'strike':float})
     credentials.token_map = token_df
 #
