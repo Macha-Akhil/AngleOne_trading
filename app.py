@@ -8,7 +8,7 @@ from pytz import timezone
 from operations import get_index_info,get_strike_lowprice,buy_stock,check_and_cancel_order,orderlist_check_placesell
 # Create a Flask web application
 app = Flask(__name__,template_folder='templates',static_folder='static')
-app.config['SERVER_TIMEOUT'] = 12000
+app.config['SERVER_TIMEOUT'] = 600
 #os.environ['TZ'] = 'Asia/Kolkata'
 # Angleone Client Credentials
 app.secret_key =credentials.secret_key
@@ -88,7 +88,7 @@ def main():
         complete_order_dict = check_and_cancel_order(unique_order_ids_result,smartapi)
         #return complete_order_dict
         sell_order_id = orderlist_check_placesell(complete_order_dict[0]['data']['averageprice'],complete_order_dict[0]['data']['tradingsymbol'],complete_order_dict[0]['data']['symboltoken'],complete_order_dict[0]['data']['quantity'],dynamic_xfor_add_up_sell,dynamic_xfor_sub_down_sell,smartapi)
-        return sell_order_id
+        #return sell_order_id
     except Exception as e:
         return json.dumps({"Error in app.py tradestock :":str(e)}),500
 if __name__ == '__main__':
