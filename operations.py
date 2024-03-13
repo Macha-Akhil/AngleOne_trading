@@ -5,6 +5,7 @@ from datetime import datetime,time,timedelta
 import time as sleep_time
 import requests,os
 import pandas as pd
+import numpy as np
 import credentials
 from retrying import retry
 import asyncio
@@ -38,8 +39,10 @@ def intializeSymbolTokenMap():
     d = requests.get(url).json()
     global token_df
     token_df = pd.DataFrame.from_dict(d)
-    # Drop rows with empty strings in the 'expiry' column
-    token_df = token_df[token_df['expiry'] != '']
+    ##########
+    token_df['expiry'] = token_df['expiry'].replace('', np.nan)
+    # Drop rows with NaN values in the 'expiry' column
+    token_df = token_df.dropna(subset=['expiry'])
     #token_df['expiry'] = pd.to_datetime(token_df['expiry'])
     token_df['expiry'] = pd.to_datetime(token_df['expiry'], format='%d%b%Y',errors='coerce')
     token_df = token_df.dropna(subset=['expiry'])  # Drop rows with invalid datetime values
