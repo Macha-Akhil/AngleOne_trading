@@ -38,6 +38,8 @@ def intializeSymbolTokenMap():
     d = requests.get(url).json()
     global token_df
     token_df = pd.DataFrame.from_dict(d)
+    # Drop rows with empty strings in the 'expiry' column
+    token_df = token_df[token_df['expiry'] != '']
     #token_df['expiry'] = pd.to_datetime(token_df['expiry'])
     token_df['expiry'] = pd.to_datetime(token_df['expiry'], format='%d%b%Y')
     token_df = token_df.astype({'strike':float})
