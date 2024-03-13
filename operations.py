@@ -12,21 +12,21 @@ import pytz  # Import the pytz module for time zone handling
 
 #smartApi = SmartConnect(api_key=credentials.api_key)#
 # Define the Kolkata time zone
-kolkata_timezone = pytz.timezone('Asia/Kolkata')
-os.environ['TZ'] = 'Asia/Kolkata'
+#kolkata_timezone = pytz.timezone('Asia/Kolkata')
+#os.environ['TZ'] = 'Asia/Kolkata'
 def get_today_date_tdngsymbl():
-        today_date = datetime.now(kolkata_timezone).date()
+        today_date = datetime.now().date()
         formatted_expiry = today_date.strftime("%a, %d %b %Y %H:%M:%S GMT")
         return formatted_expiry
 def get_today_date():
-        today_date = datetime.now(kolkata_timezone).date()
+        today_date = datetime.now().date()
         formatted_today_year = today_date.strftime("%Y,%#m,%#d")
         return formatted_today_year
 #function -- before 10am or 1pm(13pm) submitting the request with required data
 #@retry(wait_fixed=10000,stop_max_attempt_number=None) 
 def wait_until_market_open(target_time):
     while True:
-        current_time = datetime.now(kolkata_timezone).time()
+        current_time = datetime.now().time()
         if current_time >= target_time:
             break
         print("waiting for correct time .....")  
@@ -79,9 +79,9 @@ def get_index_info(indextime,indexname,smartApi):
         today = get_today_date()
         year, month, day = today.split(",")
         # Create a datetime object representing the time at which you want to get the NIFTY 50 or BANKNIFTY index open price
-        from_date_time = datetime(int(year),int(month),int(day),indextime,0,0,tzinfo=kolkata_timezone)
+        from_date_time = datetime(int(year),int(month),int(day),indextime,0,0)
         #return str(from_date_time)
-        to_date_time = datetime(int(year),int(month),int(day),indextime,0,0,tzinfo=kolkata_timezone)
+        to_date_time = datetime(int(year),int(month),int(day),indextime,0,0)
         from_date_time_str = "{:04d}-{:02d}-{:02d} {:02d}:{:02d}".format(
             from_date_time.year, from_date_time.month, from_date_time.day,
             from_date_time.hour, from_date_time.minute)
