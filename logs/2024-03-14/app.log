@@ -1,0 +1,13 @@
+[E 240314 10:19:19 operations:110] Error fetching historical data: single positional indexer is out-of-bounds
+    Traceback (most recent call last):
+      File "c:\Users\user\Documents\angleOne_trading\operations.py", line 82, in get_index_info
+        index_instrument_token = getTokenInfo('NSE','',index,'','','').iloc[0]['token']
+                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^
+      File "C:\Users\user\AppData\Local\Programs\Python\Python311\Lib\site-packages\pandas\core\indexing.py", line 1103, in __getitem__
+        return self._getitem_axis(maybe_callable, axis=axis)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+      File "C:\Users\user\AppData\Local\Programs\Python\Python311\Lib\site-packages\pandas\core\indexing.py", line 1656, in _getitem_axis
+        self._validate_integer(key, axis)
+      File "C:\Users\user\AppData\Local\Programs\Python\Python311\Lib\site-packages\pandas\core\indexing.py", line 1589, in _validate_integer
+        raise IndexError("single positional indexer is out-of-bounds")
+    IndexError: single positional indexer is out-of-bounds

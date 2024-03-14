@@ -39,8 +39,12 @@ def intializeSymbolTokenMap():
     d = requests.get(url).json()
     global token_df
     token_df = pd.DataFrame.from_dict(d)
+    # Replace empty strings in the 'expiry' column with NaN
+    token_df['expiry'] = token_df['expiry'].replace('', np.nan)
     #token_df['expiry'] = pd.to_datetime(token_df['expiry'])
     token_df['expiry'] = pd.to_datetime(token_df['expiry'], format='%d%b%Y',errors='coerce')
+    # Drop rows with invalid datetime values (NaT)
+    token_df = token_df.dropna(subset=['expiry'])
     token_df = token_df.astype({'strike':float})
     credentials.token_map = token_df
 #
