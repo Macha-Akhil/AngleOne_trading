@@ -70,7 +70,8 @@ def get_index_info(indextime,indexname,smartApi):
             indextime_temp = 16
         target_time = time(indextime_temp,30)
         print("wait for 10:01 (or) 13:01 .....")
-        wait_until_market_open(target_time)
+        return wait_until_market_open(target_time)
+
         if indexname == "NIFTY":
             index = "NIFTY"
         elif indexname == "BANKNIFTY":
