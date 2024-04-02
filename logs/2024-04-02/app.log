@@ -1,0 +1,6 @@
+[E 240402 16:01:04 operations:109] Error fetching historical data: 'NoneType' object is not subscriptable
+    Traceback (most recent call last):
+      File "c:\Users\user\Documents\angleOne_trading\operations.py", line 106, in get_index_info
+        index_open = index_historical_data['data'][0][1]
+                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^
+    TypeError: 'NoneType' object is not subscriptable
