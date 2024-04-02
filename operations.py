@@ -58,13 +58,16 @@ def getTokenInfo(exch_seg,instrumenttype,symbol,strike_price,ce_pe,expiry_date):
 # Morning 10Am or 1pm  NIFTY 50 or BANKNIFTY Index value
 def get_index_info(indextime,indexname,smartApi):
     try:
-        if indextime == 10:
-            indextime = 10
-        elif indextime == 13:
-            indextime = 13
-        else:
-            raise ValueError("We don't support other than 10AM & 1PM (13) time")
+        # if indextime == 10:
+        #     indextime = 10
+        # elif indextime == 13:
+        #     indextime = 13
+        # else:
+        #     raise ValueError("We don't support other than 10AM & 1PM (13) time")
         #calling the function before the time to submit
+        #target_time = time(indextime,1)
+        if indextime == 13:
+            indextime = 16
         target_time = time(indextime,1)
         print("wait for 10:01 (or) 13:01 .....")
         wait_until_market_open(target_time)
