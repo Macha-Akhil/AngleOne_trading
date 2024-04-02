@@ -8,7 +8,7 @@ from pytz import timezone
 from operations import get_index_info,get_strike_lowprice,buy_stock,check_and_cancel_order,orderlist_check_placesell
 # Create a Flask web application
 app = Flask(__name__,template_folder='templates',static_folder='static')
-app.config['SERVER_TIMEOUT'] = 12000
+#app.config['SERVER_TIMEOUT'] = 12000
 #os.environ['TZ'] = 'Asia/Kolkata'
 # Angleone Client Credentials
 app.secret_key =credentials.secret_key
