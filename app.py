@@ -59,7 +59,7 @@ def main():
             return json.dumps({"Error in post values :":str(e)}),500
         dynamic_time_int = int(dynamic_time)
         get_index = get_index_info(dynamic_time_int,dynamic_index,smartapi)
-        return str(get_index)
+        #return str(get_index)
         if not isinstance(get_index, (int, float)):
         # If it's not a float or int, raise a ValueError
             raise ValueError("Invalid index value: {}".format(get_index))
