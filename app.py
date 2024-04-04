@@ -60,27 +60,27 @@ def main():
         dynamic_time_int = int(dynamic_time)
         get_index = get_index_info(dynamic_time_int,dynamic_index,smartapi)
         return str(get_index)
-        # if not isinstance(get_index, (int, float)):
-        # # If it's not a float or int, raise a ValueError
-        #     raise ValueError("Invalid index value: {}".format(get_index))
-        # roundfig_openindex = round(get_index)
-        # #return str(roundfig_openindex)
-        # if dynamic_index == "NIFTY":
-        #     rounded_openindex = round(roundfig_openindex / 50) * 50
-        # elif dynamic_index == 'BANKNIFTY':
-        #     rounded_openindex = round(roundfig_openindex / 100) * 100
-        # #return str(rounded_openindex)
-        # ce_strike = int(rounded_openindex) - int(dynamic_xforindex)
-        # pe_strike = int(rounded_openindex) + int(dynamic_xforindex)
-        # #return [ce_strike,pe_strike]
-        # ce_strike_lp = get_strike_lowprice(dynamic_time_int,dynamic_index,ce_strike,"CE",smartapi)
-        # pe_strike_lp = get_strike_lowprice(dynamic_time_int,dynamic_index,pe_strike,"PE",smartapi)
-        # #return [ce_strike_lp,pe_strike_lp]
-        # ce_strike_lp.extend([dynamic_xforbuy,dynamic_xfortriggerprice_buy,dynamic_quantity])
-        # pe_strike_lp.extend([dynamic_xforbuy,dynamic_xfortriggerprice_buy,dynamic_quantity])
-        # #return [ce_strike_lp,pe_strike_lp]
-        # items_to_buy = [ce_strike_lp,pe_strike_lp]
-        # #return items_to_buy
+        if not isinstance(get_index, (int, float)):
+        # If it's not a float or int, raise a ValueError
+            raise ValueError("Invalid index value: {}".format(get_index))
+        roundfig_openindex = round(get_index)
+        #return str(roundfig_openindex)
+        if dynamic_index == "NIFTY":
+            rounded_openindex = round(roundfig_openindex / 50) * 50
+        elif dynamic_index == 'BANKNIFTY':
+            rounded_openindex = round(roundfig_openindex / 100) * 100
+        #return str(rounded_openindex)
+        ce_strike = int(rounded_openindex) - int(dynamic_xforindex)
+        pe_strike = int(rounded_openindex) + int(dynamic_xforindex)
+        #return [ce_strike,pe_strike]
+        ce_strike_lp = get_strike_lowprice(dynamic_time_int,dynamic_index,ce_strike,"CE",smartapi)
+        pe_strike_lp = get_strike_lowprice(dynamic_time_int,dynamic_index,pe_strike,"PE",smartapi)
+        #return [ce_strike_lp,pe_strike_lp]
+        ce_strike_lp.extend([dynamic_xforbuy,dynamic_xfortriggerprice_buy,dynamic_quantity])
+        pe_strike_lp.extend([dynamic_xforbuy,dynamic_xfortriggerprice_buy,dynamic_quantity])
+        #return [ce_strike_lp,pe_strike_lp]
+        items_to_buy = [ce_strike_lp,pe_strike_lp]
+        return items_to_buy
         # triggered_buy_data_ids = buy_stock(dynamic_time_int,dynamic_index,items_to_buy,smartapi)
         # #return triggered_buy_data_ids
         # unique_order_ids_result = [triggered_buy_data_ids[i:i+2] for i in range(0, len(triggered_buy_data_ids), 2)]
