@@ -58,8 +58,11 @@ def main():
         except Exception as e:
             return json.dumps({"Error in post values :":str(e)}),500
         dynamic_time_int = int(dynamic_time)
-        get_index = get_index_info(dynamic_time_int,dynamic_index,smartapi)
-        #return str(get_index)
+        try :
+            get_index = get_index_info(dynamic_time_int,dynamic_index,smartapi)
+            #return str(get_index)
+        except Exception as e:
+            return json.dumps({"Error in app.py get_index :":str(e)}),500
         if not isinstance(get_index, (int, float)):
         # If it's not a float or int, raise a ValueError
             raise ValueError("Invalid index value: {}".format(get_index))
@@ -73,8 +76,11 @@ def main():
         ce_strike = int(rounded_openindex) - int(dynamic_xforindex)
         pe_strike = int(rounded_openindex) + int(dynamic_xforindex)
         #return [ce_strike,pe_strike]
-        ce_strike_lp = get_strike_lowprice(dynamic_time_int,dynamic_index,ce_strike,"CE",smartapi)
-        pe_strike_lp = get_strike_lowprice(dynamic_time_int,dynamic_index,pe_strike,"PE",smartapi)
+        try :
+            ce_strike_lp = get_strike_lowprice(dynamic_time_int,dynamic_index,ce_strike,"CE",smartapi)
+            pe_strike_lp = get_strike_lowprice(dynamic_time_int,dynamic_index,pe_strike,"PE",smartapi)
+        except Exception as e:
+            return json.dumps({"Error in app.py get_strike_lowprice :":str(e)}),500
         #return [ce_strike_lp,pe_strike_lp]
         ce_strike_lp.extend([dynamic_xforbuy,dynamic_xfortriggerprice_buy,dynamic_quantity])
         pe_strike_lp.extend([dynamic_xforbuy,dynamic_xfortriggerprice_buy,dynamic_quantity])
