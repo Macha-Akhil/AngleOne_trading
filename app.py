@@ -78,23 +78,35 @@ def main():
         #return [ce_strike,pe_strike]
         try :
             ce_strike_lp = get_strike_lowprice(dynamic_time_int,dynamic_index,ce_strike,"CE",smartapi)
+        except Exception as e:
+            return json.dumps({"Error in app.py ce_strike_lp :":str(e)}),500
+        try:
             pe_strike_lp = get_strike_lowprice(dynamic_time_int,dynamic_index,pe_strike,"PE",smartapi)
         except Exception as e:
-            return json.dumps({"Error in app.py get_strike_lowprice :":str(e)}),500
+            return json.dumps({"Error in app.py pe_strike_lp :":str(e)}),500
         #return [ce_strike_lp,pe_strike_lp]
         ce_strike_lp.extend([dynamic_xforbuy,dynamic_xfortriggerprice_buy,dynamic_quantity])
         pe_strike_lp.extend([dynamic_xforbuy,dynamic_xfortriggerprice_buy,dynamic_quantity])
         #return [ce_strike_lp,pe_strike_lp]
         items_to_buy = [ce_strike_lp,pe_strike_lp]
-        return items_to_buy
-        # triggered_buy_data_ids = buy_stock(dynamic_time_int,dynamic_index,items_to_buy,smartapi)
-        # #return triggered_buy_data_ids
-        # unique_order_ids_result = [triggered_buy_data_ids[i:i+2] for i in range(0, len(triggered_buy_data_ids), 2)]
-        # #return unique_order_ids_result
-        # complete_order_dict = check_and_cancel_order(unique_order_ids_result,smartapi)
-        # #return complete_order_dict
-        # sell_order_id = orderlist_check_placesell(complete_order_dict[0]['data']['averageprice'],complete_order_dict[0]['data']['tradingsymbol'],complete_order_dict[0]['data']['symboltoken'],complete_order_dict[0]['data']['quantity'],dynamic_xfor_add_up_sell,dynamic_xfor_sub_down_sell,smartapi)
-        # return sell_order_id
+        #return items_to_buy
+        try:
+            triggered_buy_data_ids = buy_stock(dynamic_time_int,dynamic_index,items_to_buy,smartapi)
+            #return triggered_buy_data_ids
+        except Exception as e:
+            return json.dumps({"Error in app.py triggered_buy_data_ids :":str(e)}),500
+        unique_order_ids_result = [triggered_buy_data_ids[i:i+2] for i in range(0, len(triggered_buy_data_ids), 2)]
+        #return unique_order_ids_result
+        try:
+            complete_order_dict = check_and_cancel_order(unique_order_ids_result,smartapi)
+            #return complete_order_dict
+        except Exception as e:
+            return json.dumps({"Error in app.py complete_order_dict :":str(e)}),500
+        try:
+            sell_order_id = orderlist_check_placesell(complete_order_dict[0]['data']['averageprice'],complete_order_dict[0]['data']['tradingsymbol'],complete_order_dict[0]['data']['symboltoken'],complete_order_dict[0]['data']['quantity'],dynamic_xfor_add_up_sell,dynamic_xfor_sub_down_sell,smartapi)
+            return sell_order_id
+        except Exception as e:
+            return json.dumps({"Error in app.py complete_order_dict :":str(e)}),500
     except Exception as e:
         return json.dumps({"Error in app.py tradestock :":str(e)}),500
 if __name__ == '__main__':
