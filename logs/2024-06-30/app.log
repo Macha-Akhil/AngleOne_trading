@@ -1,0 +1,29 @@
+[E 240630 17:05:16 app:33] {'status': False, 'message': 'Invalid totp', 'errorcode': 'AB1050', 'data': None}
+[E 240630 17:05:17 app:33] {'status': False, 'message': 'Invalid totp', 'errorcode': 'AB1050', 'data': None}
+[E 240630 17:13:20 operations:106] Error fetching historical data: string index out of range
+    Traceback (most recent call last):
+      File "c:\Users\user\Documents\angleOne_trading\operations.py", line 103, in get_index_info
+        index_open = index_historical_data['data'][0][1]
+                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^
+    IndexError: string index out of range
+[E 240630 17:17:37 app:33] {'status': False, 'message': 'Invalid totp', 'errorcode': 'AB1050', 'data': None}
+[E 240630 17:17:56 operations:106] Error fetching historical data: string index out of range
+    Traceback (most recent call last):
+      File "c:\Users\user\Documents\angleOne_trading\operations.py", line 103, in get_index_info
+        index_open = index_historical_data['data'][0][1]
+                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^
+    IndexError: string index out of range
+[E 240630 17:20:35 app:33] {'status': False, 'message': 'Invalid totp', 'errorcode': 'AB1050', 'data': None}
+[E 240630 17:45:12 app:33] {'status': False, 'message': 'Invalid totp', 'errorcode': 'AB1050', 'data': None}
+[E 240630 18:11:15 operations:203] Error fetching historical data: min() arg is an empty sequence
+    Traceback (most recent call last):
+      File "c:\Users\user\Documents\angleOne_trading\operations.py", line 198, in get_strike_lowprice
+        min_low_price = min(low_prices)
+                        ^^^^^^^^^^^^^^^
+    ValueError: min() arg is an empty sequence
+[E 240630 18:11:21 operations:203] Error fetching historical data: min() arg is an empty sequence
+    Traceback (most recent call last):
+      File "c:\Users\user\Documents\angleOne_trading\operations.py", line 198, in get_strike_lowprice
+        min_low_price = min(low_prices)
+                        ^^^^^^^^^^^^^^^
+    ValueError: min() arg is an empty sequence

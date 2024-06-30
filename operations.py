@@ -197,7 +197,7 @@ def get_strike_lowprice(indextime,indexname,strike_price,option,smartApi):
         low_prices = [item[3] for item in index_historical_data['data']]
         min_low_price = min(low_prices)
         roundfig_low_value_option = round(min_low_price)
-        return [min_low_price,result_list]
+        #return [min_low_price,result_list]
         return [roundfig_low_value_option,result_list]    
     except Exception as e:
         logger.exception(f"Error fetching historical data: {e}")
